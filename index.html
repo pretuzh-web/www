@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>ModelToPrice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ModelToPrice</h1>
+        
+        <!-- Блок с вводом веса модели -->
+        <div class="input-group">
+            <label for="weight">Вес модели (граммы):</label>
+            <input type="number" id="weight" placeholder="Например: 50" min="0" step="0.1" value="50">
+        </div>
+
+        <!-- Блок с выбором материала -->
+        <div class="input-group">
+            <label for="material">Материал:</label>
+            <select id="material">
+                <option value="pla" data-price="300">PLA - 1000₽/кг</option>
+                <option value="abs" data-price="350">ABS - 600₽/кг</option>
+                <option value="petg" data-price="400">PETG - 1200₽/кг</option>
+                <option value="flex" data-price="500">Flex - 1500₽/кг</option>
+            </select>
+        </div>
+
+        <!-- Блок с качеством печати -->
+        <div class="input-group">
+            <label for="quality">Качество печати:</label>
+            <select id="quality">
+                <option value="draft" data-factor="0.8">Черновик (быстро) -0.8</option>
+                <option value="normal" data-factor="1" selected>Стандарт</option>
+                <option value="high" data-factor="1.5">Высокое (медленно) +1.5</option>
+            </select>
+        </div>
+
+        <!-- Блок с плотностью заполнения -->
+        <div class="input-group">
+            <label>Заполнение:</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="infill" value="0.8" checked> 20%
+                </label>
+                <label>
+                    <input type="radio" name="infill" value="1"> 50%
+                </label>
+                <label>
+                    <input type="radio" name="infill" value="1.2"> 100%
+                </label>
+            </div>
+        </div>
+
+        <!-- Дополнительные услуги -->
+        <div class="input-group">
+            <label>Дополнительно:</label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="support" value="50"> Поддержки (+50₽)
+            </label>
+            <label class="checkbox-label">
+                <input type="checkbox" id="postprocessing" value="100"> Постобработка (+100₽)
+            </label>
+        </div>
+
+        <!-- Результат расчета -->
+        <div class="result-block">
+            <h2>Стоимость печати:</h2>
+            <div class="price-container">
+                <span class="price" id="totalPrice">0</span> <span class="currency">₽</span>
+            </div>
+            <div class="price-details" id="priceDetails">
+                <p>Материал: <span id="materialCost">0</span>₽</p>
+                <p>Работа: <span id="workCost">0</span>₽</p>
+                <p>Доп. услуги: <span id="extraCost">0</span>₽</p>
+            </div>
+        </div>
+
+        <!-- Кнопки управления -->
+        <div class="button-group">
+            <button class="btn btn-calculate" id="calculateBtn">Рассчитать</button>
+            <button class="btn btn-reset" id="resetBtn">Сбросить</button>
+        </div>
+
+        <!-- Подсказка -->
+        <div class="hint">
+            <p><strong>Подсказка:</strong> Вес модели можно узнать в слайсере (Cura, PrusaSlicer). Обычно фигурка 5-7см весит 10-30 грамм.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
